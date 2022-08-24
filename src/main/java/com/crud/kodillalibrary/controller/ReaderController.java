@@ -36,5 +36,4 @@ public class ReaderController {
         readerService.saveNewReader(reader);
         return ResponseEntity.ok().build();
     }
-
 }
