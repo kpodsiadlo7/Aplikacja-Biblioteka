@@ -1,27 +1,63 @@
 package com.crud.kodillalibrary.main;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-
+import com.sun.istack.NotNull;
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Entity(name = "books")
-public class Book {
+@Entity
+@Table(name = "BOOK")
+public class Book{
+    private Long id;
+    private int yearPublishment;
+    private String title;
+    private String author;
+
+    public Book(){
+    }
+
+    public Book(int yearPublishment, String title, String author){
+        this.yearPublishment = yearPublishment;
+        this.title = title;
+        this.author = author;
+    }
 
     @Id
     @GeneratedValue
     @NotNull
-    @Column(name = "id", unique = true)
-    private Long id;
-    @Column(name = "year_publishment")
-    private Long yearPublishment;
-    @Column(name = "title")
-    private String bookTitle;
-    @Column(name = "author")
-    private String bookAuthor;
+    @Column(name = "ID", unique = true)
+    public Long getId(){
+        return id;
+    }
+
+    @Column(name = "BOOK_TITLE")
+    public String getTitle(){
+        return title;
+    }
+
+    @Column(name = "BOOK_AUTHOR")
+    public String getAuthor(){
+            return author;
+    }
+
+    @Column(name = "YEAR_PUBLISHMENT")
+    @NotNull
+    public int getYearPublishment(){
+        return yearPublishment;
+    }
+
+    private void setId(Long id) {
+        this.id = id;
+    }
+
+    private void setTitle(String title) {
+        this.title = title;
+    }
+
+    private void setAuthor(String author) {
+        this.author = author;
+    }
+
+    private void setYearPublishment(int yearPublishment) {
+        this.yearPublishment = yearPublishment;
+    }
+
 }
