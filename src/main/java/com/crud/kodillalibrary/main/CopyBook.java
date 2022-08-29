@@ -7,15 +7,13 @@ import javax.persistence.*;
 @Table(name = "COPY_BOOK")
 public class CopyBook{
     private Long id;
-    private Long titleId;
     private String status;
     private Book book;
 
     public CopyBook() {
     }
 
-    public CopyBook(Long titleId, String status) {
-        this.titleId = titleId;
+    public CopyBook(String status) {
         this.status = status;
     }
 
@@ -27,10 +25,6 @@ public class CopyBook{
         return id;
     }
 
-    @Column(name = "TITLE_ID")
-    public Long getTitleId(){
-        return titleId;
-    }
 
     @Column(name = "STATUS")
     public String getStatus(){
@@ -45,7 +39,7 @@ public class CopyBook{
 
 
 
-    private void setBook(Book book) {
+    public void setBook(Book book) {
         this.book = book;
     }
 
@@ -55,10 +49,6 @@ public class CopyBook{
 
     private void setId(Long id){
         this.id = id;
-    }
-
-    private void setTitleId(Long titleId){
-        this.titleId = titleId;
     }
 
     private void setStatus(String status){

@@ -59,7 +59,7 @@ public class Rental{
         this.rental = rental;
     }
     @OneToMany(
-            targetEntity = CopyBook.class,
+            targetEntity = .class,
             mappedBy = "Rental",
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
