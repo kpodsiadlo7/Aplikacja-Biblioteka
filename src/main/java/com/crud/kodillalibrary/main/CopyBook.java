@@ -8,13 +8,15 @@ import javax.persistence.*;
 public class CopyBook{
     private Long id;
     private String status;
+    private int amount;
     private Book book;
 
     public CopyBook() {
     }
 
-    public CopyBook(String status) {
+    public CopyBook(String status, int amount) {
         this.status = status;
+        this.amount = amount;
     }
 
     @Id
@@ -25,25 +27,31 @@ public class CopyBook{
         return id;
     }
 
-
     @Column(name = "STATUS")
     public String getStatus(){
         return status;
     }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "BOOK_ID")
+    @JoinColumn(name = "TITLE_ID")
     public Book getBook() {
         return book;
     }
 
+    @Column(name = "BOOK_AMOUNT")
+    public int getAmount() {
+        return amount;
+    }
 
+    public void setAmount(int amount) {
+        this.amount = amount;
+    }
 
     public void setBook(Book book) {
         this.book = book;
     }
 
-    private void setCopyBook(Book book){
+    public void setCopyBook(Book book){
         this.book = book;
     }
 

@@ -10,6 +10,5 @@ import java.util.List;
 @Transactional
 @Repository
 public interface CopyBookDao extends CrudRepository<CopyBook,Long> {
-
     List<CopyBook> findByStatus(String status);
 }
