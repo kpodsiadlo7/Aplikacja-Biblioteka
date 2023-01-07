@@ -17,18 +17,17 @@ public class BookService {
         this.bookRepository = bookRepository;
         this.bookCopyService = bookCopyService;
     }
-    boolean createNewBook(BookDto bookDto) throws BookNotFoundException {
+    void createNewBook(BookDto bookDto) throws BookNotFoundException {
         if (!bookRepository.existsByTitleAndAuthorAndYear(bookDto.getTitle(), bookDto.getAuthor(), bookDto.getYear())){
         Book book = bookMapper.mapToBook(bookDto);
         BookCopy bookCopy = bookCopyService.createNewBook();
         bookRepository.save(book);
         saveBook(book,bookCopy);
-        return true;
+        return;
         }
         Book book = bookRepository.findByTitleAndAuthorAndYear(bookDto.getTitle(), bookDto.getAuthor(), bookDto.getYear()).orElseThrow(BookNotFoundException::new);
         book.getBooks().add(bookCopyService.createNewBook());
         bookRepository.save(book);
-        return true;
     }
     public Book getBook(Long bookId) throws BookNotFoundException {
         if (!bookRepository.existsById(bookId))
